@@ -1,0 +1,38 @@
+uuvsim_adapter:
+  ros__parameters:
+    input_topic: /sonar/image_raw
+    output_topic: /sonar/std/frame
+    source_id: uuvsim
+    projection: polar
+    range_min_m: 0.5
+    range_max_m: 50.0
+    fov_rad: 2.0943952
+    beam_count: 0
+    bin_count: 0
+    frame_id: sonar_link
+    image_encoding_override: ""
+
+real_sonar_adapter:
+  ros__parameters:
+    input_topic: /real_sonar/image_raw
+    output_topic: /sonar/std/frame
+    source_id: real_sonar
+    projection: polar
+    range_min_m: 0.2
+    range_max_m: 80.0
+    fov_rad: 3.1415926
+    beam_count: 0
+    bin_count: 0
+    frame_id: sonar_link
+    image_encoding_override: ""
+
+yolo_infer:
+  ros__parameters:
+    input_topic: /sonar/std/frame
+    output_topic: /sonar/detections
+    model_path: ""
+    device: cuda:0
+    conf_threshold: 0.25
+    iou_threshold: 0.45
+    max_det: 100
+    publish_empty_when_unavailable: true

@@ -1,0 +1,10 @@
+std_msgs/Header header
+sensor_msgs/Image image
+string source_id
+string projection
+float32 range_min_m
+float32 range_max_m
+float32 fov_rad
+uint16 beam_count
+uint16 bin_count
+string image_encoding
