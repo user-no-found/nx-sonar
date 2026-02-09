@@ -23,7 +23,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument(
                 "adapter_type",
                 default_value="uuvsim",
-                description="Select adapter source: uuvsim or real",
+                description="选择适配器来源: uuvsim 或 real",
             ),
             Node(
                 package="sonar_adapters",

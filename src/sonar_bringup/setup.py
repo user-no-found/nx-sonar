@@ -18,6 +18,6 @@ setup(
     zip_safe=True,
     maintainer="nx-sonar",
     maintainer_email="dev@example.com",
-    description="Launch files for sonar pipeline.",
+    description="声呐管线启动文件。",
     license="Apache-2.0",
 )

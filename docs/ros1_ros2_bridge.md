@@ -1,57 +1,57 @@
-# ROS1 to ROS2 Bridge Guide
+# ROS1 到 ROS2 桥接说明
 
-This project uses ROS1 UUVSim on PC and ROS2 perception on NX. A bridge layer is required.
+当前链路为：PC 运行 ROS1 UUVSim，NX 运行 ROS2 感知节点。两端必须通过桥接层互通。
 
-## 1. Network and Environment
-Set both machines to the same LAN and ROS domain.
+## 1. 网络与环境变量
+确保 PC 与 NX 在同一网段，`ROS_DOMAIN_ID` 一致。
 
-On PC (ROS1 side):
+PC（ROS1 侧）：
 ```bash
 export ROS_MASTER_URI=http://<PC_IP>:11311
 export ROS_IP=<PC_IP>
 export ROS_DOMAIN_ID=30
 ```
 
-On NX (ROS2 side):
+NX（ROS2 侧）：
 ```bash
 export ROS_DOMAIN_ID=30
 ```
 
-## 2. Start UUVSim and ROS1 Bridge on PC
-Terminal A:
+## 2. 在 PC 启动 UUVSim 与桥接
+终端 A：
 ```bash
 source /opt/ros/noetic/setup.bash
 roscore
 ```
 
-Terminal B:
+终端 B：
 ```bash
 source /opt/ros/noetic/setup.bash
-# start uuvsim launch here
+# 在此启动 uuvsim 对应 launch
 ```
 
-Terminal C:
+终端 C：
 ```bash
 source /opt/ros/noetic/setup.bash
 source /opt/ros/humble/setup.bash
 ros2 run ros1_bridge dynamic_bridge --bridge-all-topics
 ```
 
-## 3. Start NX Pipeline
-Run launch on NX with uuvsim adapter:
+## 3. 在 NX 启动统一管线
+使用 UUVSim 适配器启动：
 ```bash
 ros2 launch sonar_bringup pipeline.launch.py adapter_type:=uuvsim
 ```
 
-## 4. Verify Topic Flow
-On NX:
+## 4. 校验话题链路
+在 NX 上检查：
 ```bash
 ros2 topic echo /sonar/std/frame/header
 ros2 topic echo /sonar/detections/header
 ```
 
-## 5. Real Sonar Switch
-Switch to real sonar adapter without changing inference node:
+## 5. 切换到真实声呐
+不改推理节点，仅切换适配器：
 ```bash
 ros2 launch sonar_bringup pipeline.launch.py adapter_type:=real
 ```

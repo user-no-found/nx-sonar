@@ -2,7 +2,7 @@
 <package format="3">
   <name>sonar_adapters</name>
   <version>0.1.0</version>
-  <description>Source adapters that normalize sonar data into a shared ROS2 interface.</description>
+  <description>将不同声呐数据源统一转换为共享 ROS2 接口的适配器包。</description>
   <maintainer email="dev@example.com">nx-sonar</maintainer>
   <license>Apache-2.0</license>
 

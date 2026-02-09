@@ -2,7 +2,7 @@
 <package format="3">
   <name>sonar_perception</name>
   <version>0.1.0</version>
-  <description>YOLO11 perception nodes for normalized sonar frames.</description>
+  <description>面向统一声呐帧的 YOLO11 感知节点包。</description>
   <maintainer email="dev@example.com">nx-sonar</maintainer>
   <license>Apache-2.0</license>
 

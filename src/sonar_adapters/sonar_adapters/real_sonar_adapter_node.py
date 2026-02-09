@@ -47,7 +47,7 @@ class RealSonarAdapterNode(Node):
         )
 
         self.get_logger().info(
-            f"real sonar adapter started: {input_topic} -> {output_topic}"
+            f"真实声呐适配器已启动: {input_topic} -> {output_topic}"
         )
 
     @staticmethod

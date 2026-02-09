@@ -14,7 +14,7 @@ setup(
     zip_safe=True,
     maintainer="nx-sonar",
     maintainer_email="dev@example.com",
-    description="ROS2 sonar source adapters.",
+    description="ROS2 声呐数据源适配器。",
     license="Apache-2.0",
     entry_points={
         "console_scripts": [

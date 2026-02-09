@@ -14,8 +14,8 @@ from sonar_interfaces.msg import SonarFrame
 
 try:
     from ultralytics import YOLO
-except Exception:  # pragma: no cover
-    YOLO = None  # type: ignore
+except Exception:
+    YOLO = None
 
 
 class YoloInferNode(Node):
@@ -55,26 +55,26 @@ class YoloInferNode(Node):
 
         self._load_model()
         self.get_logger().info(
-            f"yolo infer node started: {input_topic} -> {output_topic}"
+            f"YOLO 推理节点已启动: {input_topic} -> {output_topic}"
         )
 
     def _load_model(self) -> None:
         if YOLO is None:
             self.get_logger().warning(
-                "ultralytics is not installed; node will publish empty detections."
+                "未安装 ultralytics，节点将仅发布空检测结果。"
             )
             return
 
         if not self.model_path:
             self.get_logger().warning(
-                "model_path is empty; node will publish empty detections."
+                "model_path 为空，节点将仅发布空检测结果。"
             )
             return
 
         try:
             self.model = YOLO(self.model_path)
         except Exception as exc:
-            self.get_logger().error(f"failed to load model: {exc}")
+            self.get_logger().error(f"模型加载失败: {exc}")
             self.model = None
 
     def _publish_empty(self, frame: SonarFrame) -> None:
@@ -108,7 +108,7 @@ class YoloInferNode(Node):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(frame.image, desired_encoding="passthrough")
         except Exception as exc:
-            self.get_logger().error(f"image conversion failed: {exc}")
+            self.get_logger().error(f"图像转换失败: {exc}")
             if self.publish_empty_when_unavailable:
                 self._publish_empty(frame)
             return
@@ -125,7 +125,7 @@ class YoloInferNode(Node):
                 verbose=False,
             )
         except Exception as exc:
-            self.get_logger().error(f"inference failed: {exc}")
+            self.get_logger().error(f"推理失败: {exc}")
             if self.publish_empty_when_unavailable:
                 self._publish_empty(frame)
             return

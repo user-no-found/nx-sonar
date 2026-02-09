@@ -2,7 +2,7 @@
 <package format="3">
   <name>sonar_bringup</name>
   <version>0.1.0</version>
-  <description>Launch and configuration for the sonar adapter and perception pipeline.</description>
+  <description>声呐适配与感知管线的启动与配置包。</description>
   <maintainer email="dev@example.com">nx-sonar</maintainer>
   <license>Apache-2.0</license>
 

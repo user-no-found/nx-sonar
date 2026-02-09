@@ -47,7 +47,7 @@ class UuvsimAdapterNode(Node):
         )
 
         self.get_logger().info(
-            f"uuvsim adapter started: {input_topic} -> {output_topic}"
+            f"UUVSim 适配器已启动: {input_topic} -> {output_topic}"
         )
 
     @staticmethod

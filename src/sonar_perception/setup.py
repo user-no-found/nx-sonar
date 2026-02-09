@@ -14,7 +14,7 @@ setup(
     zip_safe=True,
     maintainer="nx-sonar",
     maintainer_email="dev@example.com",
-    description="ROS2 sonar perception nodes.",
+    description="ROS2 声呐感知节点。",
     license="Apache-2.0",
     entry_points={
         "console_scripts": [
