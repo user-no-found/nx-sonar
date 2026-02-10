@@ -9,7 +9,7 @@
 在 NX 上启动管线，并启用 `tcp` 模式：
 
 ```bash
-source /opt/ros/<你的ROS2版本>/setup.bash
+source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=30
 ros2 launch sonar_bringup pipeline.launch.py adapter_type:=tcp
 ```
@@ -21,10 +21,30 @@ ros2 launch sonar_bringup pipeline.launch.py adapter_type:=tcp
 可在 `ros2/src/sonar_bringup/config/pipeline.yaml` 中修改。
 
 ## 2. PC 侧启动发送端（ROS1）
-先启动 `roscore` 与 UUVSim 后，再运行发送脚本：
+先按以下方式启动 UUVSim，再运行发送脚本：
+
+PC 终端 1：
+```bash
+source ~/catkin_ws/devel/setup.bash
+roslaunch uuv_gazebo_worlds herkules_ship_wreck.launch
+```
+
+PC 终端 2：
+```bash
+source ~/catkin_ws/devel/setup.bash
+roslaunch uuv_gazebo rexrov_sonar.launch
+```
+
+PC 终端 3（TF 修复，必需）：
+```bash
+source ~/catkin_ws/devel/setup.bash
+rosrun tf static_transform_publisher 0 0 0 0 0 0 rexrov/base_link sonar_link 100
+```
+
+PC 终端 4（发送端）：
 
 ```bash
-cd ~/nx-sonar
+cd ~/nx-sonar-uuvsim
 source /opt/ros/noetic/setup.bash
 python3 ros1/tools/ros1_gateway/laser_scan_tcp_sender.py \
   _server_host:=<NX_IP> \
