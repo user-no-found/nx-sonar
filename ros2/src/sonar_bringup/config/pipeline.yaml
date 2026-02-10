@@ -26,6 +26,15 @@ real_sonar_adapter:
     frame_id: sonar_link
     image_encoding_override: ""
 
+tcp_sonar_receiver:
+  ros__parameters:
+    bind_host: 0.0.0.0
+    bind_port: 29001
+    output_topic: /sonar/image_raw
+    frame_id: sonar_link
+    image_height: 256
+    point_thickness: 1
+
 yolo_infer:
   ros__parameters:
     input_topic: /sonar/std/frame

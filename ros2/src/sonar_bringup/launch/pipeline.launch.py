@@ -23,7 +23,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument(
                 "adapter_type",
                 default_value="uuvsim",
-                description="选择适配器来源: uuvsim 或 real",
+                description="选择适配器来源: uuvsim / real / tcp",
             ),
             Node(
                 package="sonar_adapters",
@@ -32,7 +32,7 @@ def generate_launch_description() -> LaunchDescription:
                 output="screen",
                 parameters=[config_file],
                 condition=IfCondition(
-                    PythonExpression(["'", adapter_type, "' == 'uuvsim'"])
+                    PythonExpression(["'", adapter_type, "' in ['uuvsim', 'tcp']"])
                 ),
             ),
             Node(
@@ -43,6 +43,16 @@ def generate_launch_description() -> LaunchDescription:
                 parameters=[config_file],
                 condition=IfCondition(
                     PythonExpression(["'", adapter_type, "' == 'real'"])
+                ),
+            ),
+            Node(
+                package="sonar_adapters",
+                executable="tcp_sonar_receiver_node",
+                name="tcp_sonar_receiver",
+                output="screen",
+                parameters=[config_file],
+                condition=IfCondition(
+                    PythonExpression(["'", adapter_type, "' == 'tcp'"])
                 ),
             ),
             Node(

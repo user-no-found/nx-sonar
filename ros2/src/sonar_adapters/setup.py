@@ -20,6 +20,7 @@ setup(
         "console_scripts": [
             "uuvsim_adapter_node = sonar_adapters.uuvsim_adapter_node:main",
             "real_sonar_adapter_node = sonar_adapters.real_sonar_adapter_node:main",
+            "tcp_sonar_receiver_node = sonar_adapters.tcp_sonar_receiver_node:main",
         ],
     },
 )
